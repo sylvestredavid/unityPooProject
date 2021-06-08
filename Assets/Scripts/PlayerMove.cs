@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private float speed;
+    [SerializeField] private float speed, jumpSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +30,22 @@ public class PlayerMove : MonoBehaviour
         else if(horizontalInput > 0)
         {
             spriteRenderer.flipX = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector2.up * jumpSpeed);
+            anim.SetTrigger("jump_t");
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            anim.SetTrigger("dead_t");
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            anim.SetTrigger("attack_t");
         }
     }
 }
