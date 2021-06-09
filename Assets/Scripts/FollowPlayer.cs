@@ -9,12 +9,20 @@ public class FollowPlayer : MonoBehaviour
 
     private void Start()
     {
+        GameManager.onInstantiate += GameManagerOnonInstantiate;
+    }
+
+    private void GameManagerOnonInstantiate()
+    {
         player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        if (player != null)
+        {
+            transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        }
     }
 }
